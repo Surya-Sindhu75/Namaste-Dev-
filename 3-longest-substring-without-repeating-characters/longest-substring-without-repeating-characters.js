@@ -3,22 +3,17 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    let i=0;
-    let arr=[]
-    let maxLen =0;
-    while(i<s.length) {
-       let j=i;
-       let curr=0;
-       for(let j=i; j<s.length;j++) {
-        if(!arr.includes(s[j])) {
-            arr.push(s[j]);
-            curr++;
+    let obj = {};
+    let i = 0, maxLen = 0;
+
+    for (let j = 0; j < s.length; j++) {
+        if (obj.hasOwnProperty(s[j]) && obj[s[j]] >= i) {
+            // move i just past the previous duplicate
+            i = obj[s[j]] + 1;
         }
-        else break;
-       }
-        i++;
-        maxLen=Math.max(curr, maxLen)
-        arr=[];
+        obj[s[j]] = j; // update last seen index
+        maxLen = Math.max(maxLen, j - i + 1);
     }
+
     return maxLen;
 };
