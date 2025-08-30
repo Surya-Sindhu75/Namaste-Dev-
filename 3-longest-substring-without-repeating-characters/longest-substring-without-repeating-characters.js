@@ -16,7 +16,6 @@ var lengthOfLongestSubstring = function(s) {
         }
         else break;
        }
-        console.log(arr)
         i++;
         maxLen=Math.max(curr, maxLen)
         arr=[];
