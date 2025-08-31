@@ -5,21 +5,14 @@
  */
 var characterReplacement = function(s, k) {
     let obj = {};
-    let i = 0, maxLen = 0;
+    let i = 0, maxLen = 0, maxCount = 0;
 
     for (let j = 0; j < s.length; j++) {
-        if(obj.hasOwnProperty(s[j])) obj[s[j]]+=1;
-        else obj[s[j]]=1;
 
-        // check if curr window is valid
-        let objVal =  Object.values(obj);
-        let sum = 0;
-        objVal.forEach(x => {
-            sum += x;
-        });
-        if(sum-Math.max(...objVal)>k) { // not valid window
+        obj[s[j]] = (obj[s[j]] || 0)+1;
+        maxCount = Math.max(maxCount, obj[s[j]]);
+        if((j-i+1) - maxCount > k) { // not valid window
             obj[s[i]]--;
-            if( obj[s[i]] ===0) delete  obj[s[i]]
             i++;
         }
         maxLen=Math.max(maxLen, j-i+1);
