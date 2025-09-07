@@ -19,10 +19,10 @@ var levelOrder = function(root) {
         let levelSize = q.length;
         for(let i=0;i<levelSize;i++) {
             let curr = q.shift();
-            curr?.left && q.push(curr.left);
-            curr?.right && q.push(curr.right);
+            if (curr.left) q.push(curr.left);
+            if (curr.right) q.push(curr.right);
 
-            arrLevel.push(curr?.val);
+            arrLevel.push(curr.val);
         }
         ans.push(arrLevel);
     }
