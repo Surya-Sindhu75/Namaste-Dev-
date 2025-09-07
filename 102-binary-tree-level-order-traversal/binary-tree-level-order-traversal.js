@@ -11,22 +11,14 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    if(!root) return []
-    let q = [root];
-    let index = 0
     let ans = [];
-    while(index < q.length) {
-        let arrLevel = [];
-        let levelSize = q.length - index;
-        for(let i=0;i<levelSize;i++) {
-            let curr = q[index++];
-            if (curr.left) q.push(curr.left);
-            if (curr.right) q.push(curr.right);
-
-            arrLevel.push(curr.val);
-        }
-        ans.push(arrLevel);
+    if(!root) return ans;
+    function traversal(curr, level) {
+        if(!ans[level]) ans[level] = [];
+        ans[level].push(curr.val);
+        if(curr.left) traversal(curr.left, level+1);
+        if(curr.right) traversal(curr.right, level+1);
     }
+    traversal(root, 0);
     return ans;
-    
 };
