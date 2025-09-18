@@ -27,8 +27,5 @@ function hashGenerate(root) {
         traverse(curr.left);
     }
     traverse(root);
-    console.log(hash)
-
     return hash;
-    
 }
