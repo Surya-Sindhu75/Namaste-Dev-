@@ -17,11 +17,13 @@ var lowestCommonAncestor = function(root, p, q) {
     let count = 0;
     if(!curr) return 0;
 
-    let left = search(curr.left);
-    let right = search(curr.right);
+   
 
     if(curr.val === p.val || curr.val ===q.val) count++;
 
+     let left = search(curr.left);
+    let right = search(curr.right);
+    
     count = count + left + right;
     if(count ===2 && !lca) lca = curr; // !lca, see notes
     return count;
